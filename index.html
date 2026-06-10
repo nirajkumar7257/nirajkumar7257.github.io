@@ -4,48 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ronak | Portfolio</title>
-    <!-- CSS फाइल को लिंक किया गया है -->
     <link rel="stylesheet" href="style.css">
-    <!-- Typing Effect के लिए Script -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <script src="https://unpkg.com"></script>
 </head>
 <body>
 
-    <div class="portfolio-container">
-        <!-- टॉप नेविगेशन -->
+    <!-- 🚪 वेलकम स्क्रीन -->
+    <div id="welcome-screen">
+        <button id="enter-btn">ENTER EXPERIENCE</button>
+    </div>
+
+    <!-- 🎵 बैकग्राउंड म्यूजिक -->
+    <audio id="bg-music" loop>
+        <source src="mysong.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 🌐 मुख्य पोर्टफोलियो -->
+    <div class="portfolio-container hidden" id="main-content">
         <div class="nav-links">
             <a href="#" class="active">HOME</a>
             <a href="#">CHANNEL</a>
         </div>
 
-        <!-- मुख्य प्रोफाइल सेक्शन -->
         <div class="profile-card">
-            <div class="avatar-wrapper">
-                <!-- यहाँ अपनी फोटो का नाम बदलें -->
-                <img src="my-pic.jpg" alt="comeback" class="avatar">
+            <!-- 🔄 गोल-गोल घूमने वाली नियॉन बॉर्डर लाइन -->
+            <div class="cube-border-wrapper">
+                <div class="rotating-line"></div>
+                <div class="avatar-inside">
+                    <img src="your-photo.jpg" alt="Ronak" class="avatar">
+                </div>
             </div>
             
-            <h1>HI, I'M Niraj</h1>
+            <!-- होम पेज पर चमकने वाला टच आइकॉन -->
+            <div class="screen-touch-indicator">
+                <div class="pulse-ring"></div>
+                <i class="fas fa-fingerprint"></i>
+            </div>
             
-            <!-- टाइपिंग एनिमेशन यहाँ दिखेगा -->
+            <h1 class="main-title">HI, I'M RONAK</h1>
             <p class="typing-text">I am <span id="element"></span></p>
             
-            <!-- डिस्क्रिप्शन -->
-            <p class="description">
-                I'm a passionate self-taught developer who loves building creative digital experiences. 
-                What started as curiosity became a journey of continuous learning, experimentation, and growth. 
-                I enjoy creating websites, Telegram bots, modern UI designs, and interactive web applications.
-            </p>
+            <!-- ✍️ यहाँ मैसेज एक-एक अक्षर करके टाइप होगा -->
+            <p class="description" id="typewriter-desc"></p>
+
+            <div class="social-icons">
+                <a href="https://t.me" target="_blank" class="icon-btn">
+                    <i class="fab fa-telegram-plane"></i>
+                    <span>TELEGRAM</span>
+                </a>
+                <a href="https://youtube.com" target="_blank" class="icon-btn">
+                    <i class="fab fa-youtube"></i>
+                    <span>YOUTUBE</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="icon-btn">
+                    <i class="fab fa-instagram"></i>
+                    <span>INSTAGRAM</span>
+                </a>
+            </div>
+
+            <button class="sound-btn" id="sound-toggle">
+                <i class="fas fa-volume-up"></i> Sound ON
+            </button>
+
+            <button class="explore-btn">EXPLORE MORE</button>
         </div>
     </div>
 
-    <!-- Typing Effect को चालू करने का कोड -->
     <script>
-        var typed = new Typed('#element', {
-            strings: ['Web Developer', 'UI Designer', 'Telegram Bot Creator'],
-            typeSpeed: 60,
-            backSpeed: 40,
-            loop: true
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const mainContent = document.getElementById('main-content');
+        const enterBtn = document.getElementById('enter-btn');
+        const bgMusic = document.getElementById('bg-music');
+        const soundToggle = document.getElementById('sound-toggle');
+        const descElement = document.getElementById('typewriter-desc');
+
+        // आपका पूरा मैसेज जो एक-एक करके लिखेगा
+        const fullMessage = "I'm a passionate self-taught developer who loves building creative digital experiences. What started as curiosity became a journey of continuous learning, experimentation, and growth. I enjoy creating websites, Telegram bots, modern UI designs, and interactive web applications.";
+
+        let typed;
+        let messageIndex = 0;
+
+        // मैसेज टाइप करने का फंक्शन
+        function typeMessage() {
+            if (messageIndex < fullMessage.length) {
+                descElement.innerHTML += fullMessage.charAt(messageIndex);
+                messageIndex++;
+                setTimeout(typeMessage, 30); // 30ms की स्पीड से एक-एक अक्षर लिखेगा
+            }
+        }
+
+        enterBtn.addEventListener('click', () => {
+            welcomeScreen.style.opacity = '0';
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                mainContent.classList.remove('hidden');
+                
+                bgMusic.play().catch(e => console.log("Audio play blocked"));
+
+                // 1. नाम के आगे का टाइपिंग चालू करें
+                typed = new Typed('#element', {
+                    strings: ['Frontend Developer', 'Web Developer', 'UI Designer'],
+                    typeSpeed: 60,
+                    backSpeed: 40,
+                    loop: true
+                });
+
+                // 2. पूरे डिस्क्रिप्शन का टाइपिंग इफ़ेक्ट शुरू करें
+                setTimeout(typeMessage, 500); 
+
+            }, 500);
+        });
+
+        soundToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                soundToggle.innerHTML = '<i class="fas fa-volume-up"></i> Sound ON';
+            } else {
+                bgMusic.pause();
+                soundToggle.innerHTML = '<i class="fas fa-volume-mute"></i> Sound OFF';
+            }
         });
     </script>
 </body>
