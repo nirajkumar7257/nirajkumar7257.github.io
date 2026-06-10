@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronak | Portfolio</title>
+    <!-- CSS फाइल को लिंक किया गया है -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Typing Effect के लिए Script -->
+    <script src="https://unpkg.com"></script>
+</head>
+<body>
+
+    <div class="portfolio-container">
+        <!-- टॉप नेविगेशन -->
+        <div class="nav-links">
+            <a href="#" class="active">HOME</a>
+            <a href="#">CHANNEL</a>
+        </div>
+
+        <!-- मुख्य प्रोफाइल सेक्शन -->
+        <div class="profile-card">
+            <div class="avatar-wrapper">
+                <!-- यहाँ अपनी फोटो का नाम बदलें -->
+                <img src="my-pic.jpg" alt="comeback" class="avatar">
+            </div>
+            
+            <h1>HI, I'M Niraj</h1>
+            
+            <!-- टाइपिंग एनिमेशन यहाँ दिखेगा -->
+            <p class="typing-text">I am <span id="element"></span></p>
+            
+            <!-- डिस्क्रिप्शन -->
+            <p class="description">
+                I'm a passionate self-taught developer who loves building creative digital experiences. 
+                What started as curiosity became a journey of continuous learning, experimentation, and growth. 
+                I enjoy creating websites, Telegram bots, modern UI designs, and interactive web applications.
+            </p>
+        </div>
+    </div>
+
+    <!-- Typing Effect को चालू करने का कोड -->
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Web Developer', 'UI Designer', 'Telegram Bot Creator'],
+            typeSpeed: 60,
+            backSpeed: 40,
+            loop: true
+        });
+    </script>
+</body>
+</html>
