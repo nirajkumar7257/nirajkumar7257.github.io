@@ -1,12 +1,9 @@
-* {
+/* पूरी स्क्रीन का बेसिक सेटअप */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #050505;
+    background-color: #000000;
+    font-family: 'Arial', sans-serif;
     color: #ffffff;
     display: flex;
     justify-content: center;
@@ -15,253 +12,218 @@ body {
     overflow-x: hidden;
 }
 
-#welcome-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #050505;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-
-#enter-btn {
-    background: transparent;
-    color: #ffffff;
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
-    padding: 15px 40px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    border-radius: 30px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-    transition: 0.3s ease;
-}
-
-#enter-btn:hover {
-    border-color: #ffffff;
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-    transform: scale(1.05);
-}
-
+/* स्क्रीन छुपाने की क्लास */
 .hidden {
     display: none !important;
 }
 
-.portfolio-container {
-    width: 100%;
-    max-width: 450px;
-    padding: 20px;
+/* --- 1. पहला स्क्रीन (Landing Page) --- */
+.welcome-screen {
     text-align: center;
-    animation: fadeIn 0.8s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.nav-links a {
-    color: #888;
-    text-decoration: none;
-    font-size: 13px;
+.bg-name {
+    color: #111111;
+    font-size: 3.5rem;
+    letter-spacing: 8px;
+    margin-bottom: 40px;
     font-weight: bold;
-    letter-spacing: 1px;
-    padding: 8px 24px;
-    border: 1px solid #222;
-    border-radius: 20px;
+}
+
+.enter-btn {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 15px 45px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     transition: 0.3s;
 }
 
-.nav-links a.active, .nav-links a:hover {
-    color: #fff;
-    border-color: #444;
-    background: rgba(255, 255, 255, 0.03);
+.enter-btn:hover {
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
+    background-color: #ffffff;
+    color: #000000;
 }
 
-/* 🔄 गोल घूमने वाली क्यूब/नियॉन बॉर्डर का डिज़ाइन */
-.cube-border-wrapper {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 20px auto;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.rotating-line {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    background: conic-gradient(transparent, transparent, transparent, #ffffff);
-    animation: rotateBorder 2s linear infinite;
-}
-
-@keyframes rotateBorder {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.avatar-inside {
-    position: absolute;
-    width: 144px;
-    height: 144px;
-    border-radius: 50%;
-    background: #050505; /* अंदर का बैकग्राउंड जो लाइन को पतली बॉर्डर दिखाएगा */
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.avatar {
+/* --- 2. दूसरा स्क्रीन (Main Portfolio) --- */
+.main-screen {
+    text-align: center;
+    padding: 30px 20px;
+    max-width: 400px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* 🎯 होम पेज पर चमकने वाला टच आइकॉन */
-.screen-touch-indicator {
     position: relative;
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 24px;
+    box-sizing: border-box;
 }
 
-.pulse-ring {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid rgba(255, 255, 255, 0.4);
+/* प्रोफाइल इमेज (अपनी फोटो का नाम 'my-pic.jpg' रखें) */
+.profile-pic {
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    animation: pulseWave 2s infinite ease-out;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    margin: 0 auto 25px auto;
+    background-image: url('my-pic.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-@keyframes pulseWave {
-    0% { transform: scale(0.6); opacity: 1; }
-    100% { transform: scale(1.4); opacity: 0; }
-}
-
-.main-title {
-    font-size: 32px;
-    font-weight: 900;
+.greeting {
+    font-size: 1.8rem;
     letter-spacing: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* टाइपराइटर एनीमेशन */
+.typing-container {
+    margin-bottom: 25px;
 }
 
 .typing-text {
-    font-size: 18px;
-    color: #ccc;
-    margin-bottom: 30px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid #ffffff;
+    display: inline-block;
+    animation: 
+        typing 3.5s steps(20, end) infinite alternate,
+        blink 0.75s step-end infinite;
 }
 
-/* डिस्क्रिप्शन स्टाइल */
-.description {
-    font-size: 14px;
-    color: #888;
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: #ffffff; }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.bio {
+    color: #888888;
+    font-size: 0.95rem;
     line-height: 1.6;
-    text-align: justify;
-    margin-bottom: 40px;
-    padding: 0 15px;
-    min-height: 120px; /* टाइपिंग के समय पेज हिले नहीं इसलिए फिक्स्ड हाइट */
+    margin-bottom: 35px;
 }
 
-.social-icons {
+/* सोशल मीडिया बटन्स का स्टाइल */
+.social-links {
     display: flex;
     justify-content: center;
     gap: 25px;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
-.icon-btn {
-    text-decoration: none;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.icon-btn i {
-    width: 60px;
-    height: 60px;
-    border: 1px solid #333;
-    border-radius: 50%;
+.icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.3rem;
+    text-decoration: none;
     transition: 0.3s;
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.icon-btn:hover i {
-    border-color: #fff;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+.icon:hover {
+    border-color: #ffffff;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.icon-btn span {
-    font-size: 10px;
-    color: #555;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-
+/* साउंड बटन स्टाइल */
 .sound-btn {
     background: transparent;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 10px 24px;
+    color: #666666;
+    border: 1px solid #222222;
+    padding: 10px 22px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 0.85rem;
     cursor: pointer;
-    margin-bottom: 35px;
     transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 35px;
 }
 
-.sound-btn:hover {
-    border-color: #555;
-    background: rgba(255,255,255,0.02);
+.active-sound {
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
+/* एक्सप्लोर मोर ग्लोइंग बटन */
 .explore-btn {
-    width: 85%;
     background: #ffffff;
-    color: #000;
+    color: #000000;
     border: none;
-    padding: 15px;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: 900;
+    padding: 14px 40px;
+    font-size: 0.95rem;
+    font-weight: bold;
     letter-spacing: 2px;
+    border-radius: 30px;
     cursor: pointer;
-    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
     transition: 0.3s;
 }
 
 .explore-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.4);
-    }
-    
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+    transform: scale(1.05); /* हल्का सा बड़ा होने के लिए */
+}
+
+/* --- 3. बैकग्राउंड फॉलिंग लाइन्स इफेक्ट --- */
+.background-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.line {
+    width: 1px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+.line::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -150px;
+    left: 0;
+    width: 2px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.4));
+    animation: drop 4s infinite linear;
+}
+
+/* लाइन्स के गिरने का टाइम डिले */
+.line:nth-child(1)::after { animation-delay: 0s; animation-duration: 4s; }
+.line:nth-child(2)::after { animation-delay: 1.6s; animation-duration: 3.5s; }
+.line:nth-child(3)::after { animation-delay: 0.8s; animation-duration: 4.5s; }
+.line:nth-child(4)::after { animation-delay: 2.4s; animation-duration: 3.8s; }
+
+@keyframes drop {
+    0% { top: -150px; }
+    100% { top: 100%; }
+}
