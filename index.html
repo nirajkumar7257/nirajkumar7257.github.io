@@ -1,130 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ronak | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>मेरा पोर्टफोलियो</title>
+    <!-- सोशल मीडिया आइकन्स के लिए लाइब्रेरी -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <script src="https://unpkg.com"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 🚪 वेलकम स्क्रीन -->
-    <div id="welcome-screen">
-        <button id="enter-btn">ENTER EXPERIENCE</button>
+    <!-- बैकग्राउंड म्यूजिक टैग (अपनी ऑडियो फ़ाइल का नाम यहाँ बदलें) -->
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+    <!-- 1. पहला स्क्रीन (Landing Page) -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <h1 class="bg-name">YOUR NAME</h1>
+        <button id="enterBtn" class="enter-btn">ENTER EXPERIENCE</button>
     </div>
 
-    <!-- 🎵 बैकग्राउंड म्यूजिक -->
-    <audio id="mysong.mp3" loop>
-        <source src="mysong.mp3" type="audio/mp3">
-    </audio>
-
-    <!-- 🌐 मुख्य पोर्टफोलियो -->
-    <div class="portfolio-container hidden" id="main-content">
-        <div class="nav-links">
-            <a href="#" class="active">HOME</a>
-            <a href="https://t.me/Sangeet_Stream">CHANNEL</a>
+    <!-- 2. दूसरा स्क्रीन (Main Portfolio) -->
+    <div id="mainScreen" class="main-screen hidden">
+        <!-- बैकग्राउंड में गिरती हुई लाइन्स का कोड -->
+        <div class="background-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
         </div>
 
-        <div class="profile-card">
-            <!-- 🔄 गोल-गोल घूमने वाली नियॉन बॉर्डर लाइन -->
-            <div class="cube-border-wrapper">
-                <div class="rotating-line"></div>
-                <div class="avatar-inside">
-                    <img src="my-pic.jpg" alt="Comeback" class="avatar">
-                </div>
-            </div>
-            
-            <!-- होम पेज पर चमकने वाला टच आइकॉन -->
-            <div class="screen-touch-indicator">
-                <div class="pulse-ring"></div>
-                <i class="fas fa-fingerprint"></i>
-            </div>
-            
-            <h1 class="main-title">HI, I'M Niraj</h1>
-            <p class="typing-text">I am <span id="element"></span></p>
-            
-            <!-- ✍️ यहाँ मैसेज एक-एक अक्षर करके टाइप होगा -->
-            <p class="description" id="typewriter-desc"></p>
+        <!-- प्रोफाइल फोटो -->
+        <div class="profile-pic"></div>
+        
+        <h1 class="greeting">HI, I'M YOUR NAME</h1>
+        
+        <!-- टाइपिंग एनिमेशन टेक्स्ट -->
+        <div class="typing-container">
+            <p class="typing-text">I am a Web Developer</p>
+        </div>
+        
+        <p class="bio">
+            मैं एक पैशनेट सेल्फ-टॉट डेवलपर हूँ। मुझे क्रिएटिव डिजिटल एक्सपीरियंस, वेबसाइट्स और ऐप्स बनाना बहुत पसंद है।
+        </p>
 
-            <div class="social-icons">
-                <a href="https://t.me/Sangeet_Stream" target="_blank" class="icon-btn">
-                    <i class="fab fa-telegram-plane"></i>
-                    <span>TELEGRAM</span>
-                </a>
-                <a href="https://youtube.com/@comeback_yadav?si=MFpMD0cyQDZ4w-Kc" target="_blank" class="icon-btn">
-                    <i class="fab fa-youtube"></i>
-                    <span>YOUTUBE</span>
-                </a>
-                <a href="https://www.instagram.com/comeback_yadav?igsh=N2d2bXN3cWFudzFp" target="_blank" class="icon-btn">
-                    <i class="fab fa-instagram"></i>
-                    <span>INSTAGRAM</span>
-                </a>
-            </div>
+        <!-- सोशल मीडिया बटन्स (अपने असली लिंक्स '#' की जगह डालें) -->
+        <div class="social-links">
+            <a href="#" target="_blank" class="icon"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" target="_blank" class="icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank" class="icon"><i class="fab fa-instagram"></i></a>
+        </div>
 
-            <button class="sound-btn" id="sound-toggle">
-                <i class="fas fa-volume-up"></i> Sound ON
-            </button>
+        <!-- साउंड ऑन/ऑफ बटन -->
+        <button id="soundBtn" class="sound-btn">
+            <i class="fas fa-volume-mute" id="soundIcon"></i> <span id="soundText">Sound OFF</span>
+        </button>
 
+        <!-- एक्सप्लोर मोर बटन -->
+        <div>
             <button class="explore-btn">EXPLORE MORE</button>
         </div>
     </div>
 
+    <!-- जावास्क्रिप्ट लॉजिक: स्क्रीन बदलने और साउंड कंट्रोल के लिए -->
     <script>
-        const welcomeScreen = document.getElementById('welcome-screen');
-        const mainContent = document.getElementById('main-content');
-        const enterBtn = document.getElementById('enter-btn');
-        const bgMusic = document.getElementById('bg-music');
-        const soundToggle = document.getElementById('sound-toggle');
-        const descElement = document.getElementById('typewriter-desc');
+        const enterBtn = document.getElementById('enterBtn');
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        const mainScreen = document.getElementById('mainScreen');
+        
+        const bgMusic = document.getElementById('bgMusic');
+        const soundBtn = document.getElementById('soundBtn');
+        const soundIcon = document.getElementById('soundIcon');
+        const soundText = document.getElementById('soundText');
 
-        // आपका पूरा मैसेज जो एक-एक करके लिखेगा
-        const fullMessage = "I'm a passionate self-taught developer who loves building creative digital experiences. What started as curiosity became a journey of continuous learning, experimentation, and growth. I enjoy creating websites, Telegram bots, modern UI designs, and interactive web applications.";
+        let isPlaying = false;
 
-        let typed;
-        let messageIndex = 0;
+        // बटन क्लिक करने पर पहला पेज छुपाएं और दूसरा दिखाएं
+        enterBtn.addEventListener('click', () => {
+            welcomeScreen.classList.add('hidden');
+            mainScreen.classList.remove('hidden');
+            
+            // ऑटोमैटिक म्यूजिक चालू करने का प्रयास
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                updateSoundButton();
+            }).catch(err => console.log("ऑटोप्ले ब्लॉक हुआ। यूजर मैन्युअली ऑन कर सकता है।"));
+        });
 
-        // मैसेज टाइप करने का फंक्शन
-        function typeMessage() {
-            if (messageIndex < fullMessage.length) {
-                descElement.innerHTML += fullMessage.charAt(messageIndex);
-                messageIndex++;
-                setTimeout(typeMessage, 30); // 30ms की स्पीड से एक-एक अक्षर लिखेगा
+        // साउंड बटन पर क्लिक करने का लॉजिक
+        soundBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                isPlaying = true;
+            }
+            updateSoundButton();
+        });
+
+        // बटन का रूप अपडेट करने का फंक्शन
+        function updateSoundButton() {
+            if (isPlaying) {
+                soundIcon.className = "fas fa-volume-up";
+                soundText.innerText = "Sound ON";
+                soundBtn.classList.add('active-sound');
+            } else {
+                soundIcon.className = "fas fa-volume-mute";
+                soundText.innerText = "Sound OFF";
+                soundBtn.classList.remove('active-sound');
             }
         }
-
-        enterBtn.addEventListener('click', () => {
-            welcomeScreen.style.opacity = '0';
-            setTimeout(() => {
-                welcomeScreen.style.display = 'none';
-                mainContent.classList.remove('hidden');
-                
-                bgMusic.play().catch(e => console.log("Audio play blocked"));
-
-                // 1. नाम के आगे का टाइपिंग चालू करें
-                typed = new Typed('#element', {
-                    strings: ['Frontend Developer', 'Web Developer', 'UI Designer'],
-                    typeSpeed: 60,
-                    backSpeed: 40,
-                    loop: true
-                });
-
-                // 2. पूरे डिस्क्रिप्शन का टाइपिंग इफ़ेक्ट शुरू करें
-                setTimeout(typeMessage, 500); 
-
-            }, 500);
-        });
-
-        soundToggle.addEventListener('click', () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                soundToggle.innerHTML = '<i class="fas fa-volume-up"></i> Sound ON';
-            } else {
-                bgMusic.pause();
-                soundToggle.innerHTML = '<i class="fas fa-volume-mute"></i> Sound OFF';
-            }
-        });
     </script>
+
 </body>
 </html>
